@@ -55,6 +55,8 @@ group :development, :test do
 
   # Loads environment variables from .env file [https://github.com/bkeepers/dotenv]
   gem "dotenv-rails"
+
+  gem "tailwindcss-rails"
 end
 
 group :development do
