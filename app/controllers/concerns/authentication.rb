@@ -10,6 +10,11 @@ module Authentication
     def allow_unauthenticated_access(**options)
       skip_before_action :require_authentication, **options
     end
+
+    def unauthenticated_access_only(**options)
+    allow_unauthenticated_access **options
+      before_action -> { redirect_to dashboard_path if authenticated? }, **options
+    end
   end
 
   private
@@ -35,7 +40,7 @@ module Authentication
     end
 
     def after_authentication_url
-      session.delete(:return_to_after_authenticating) || root_url
+      session.delete(:return_to_after_authenticating) || dashboard_url
     end
 
     def start_new_session_for(user)

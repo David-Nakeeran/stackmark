@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   # root "posts#index"
   root "pages#home"
   get "about", to: "pages#about"
+  get "/dashboard", to: "dashboard#show"
+  resource :signups
 end
