@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  root "pages#home"
+  get "about", to: "pages#about"
+  get "/dashboard", to: "dashboard#show"
+  delete "/logout", to: "sessions#destroy"
+  resources :bookmarks
+  resource :signups
   resource :session
   resources :passwords, param: :token
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -13,9 +19,4 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  root "pages#home"
-  get "about", to: "pages#about"
-  get "/dashboard", to: "dashboard#show"
-  delete "/logout", to: "sessions#destroy"
-  resource :signups
 end
