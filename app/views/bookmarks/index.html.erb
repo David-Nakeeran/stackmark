@@ -6,13 +6,9 @@
     <% @bookmarks.each do |bookmark|%>
       <div>
         <p>Title: <%= bookmark.title%></p>
-        <p>Url: <%= bookmark.url%></p>
-        <%if bookmark.description.present?%>
-          <p>Description: <%= bookmark.description%></p>
-        <%end%>
-        <%if bookmark.notes.present?%>
-          <p>Notes: <%= bookmark.notes%></p>
-        <%end%>
+        <a href="/bookmarks/<%= bookmark.id%>">
+          View Details
+        </a>
       </div>
     <%end%>
   <%end%>
