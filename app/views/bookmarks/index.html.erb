@@ -6,7 +6,7 @@
     <% @bookmarks.each do |bookmark|%>
       <div>
         <p>Title: <%= bookmark.title%></p>
-        <%= link_to "View Details", bookmarks_path(bookmark)%>
+        <%= link_to "View Details", bookmark_path(bookmark)%>
       </div>
     <%end%>
   <%end%>
