@@ -10,6 +10,6 @@ class BookmarksController < ApplicationController
 
   private
     def user_bookmark
-      @bookmark = Current.user.bookmarks.find(params[:id])
+      @bookmark = Current.user.bookmarks.find_by!(params[:id])
     end
 end
