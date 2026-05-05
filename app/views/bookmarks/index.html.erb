@@ -1,5 +1,6 @@
 <h1>Bookmarks</h1>
 <div>
+  <%= link_to "New Bookmark", new_bookmark_path%>
   <% unless @bookmarks.any? %>
     <p>You currently don't have any bookmarks</p>
   <% else %>
