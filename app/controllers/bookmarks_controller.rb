@@ -1,5 +1,5 @@
 class BookmarksController < ApplicationController
-  before_action :user_bookmark, only: [ :show ]
+  before_action :set_bookmark, only: [ :show, :edit, :update ]
 
   def index
     @bookmarks = Current.user.bookmarks
@@ -21,12 +21,22 @@ class BookmarksController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @bookmark.update(bookmark_params)
+      redirect_to @bookmark
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
-    def user_bookmark
+    def set_bookmark
       @bookmark = Current.user.bookmarks.find_by!(id: params[:id])
     end
 
-  private
     def bookmark_params
       params.expect(bookmark: [ :url, :title, :description, :notes ])
     end
