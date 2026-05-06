@@ -1,17 +1,3 @@
 <h1>Add New Bookmark</h1>
-<%= form_with model: @bookmark do |form|%>
-  <div>
-    <%= form.label :url %>
-    <%= form.text_field :url %>
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-    <%= form.label :description %>
-    <%= form.text_field :description %>
-    <%= form.label :notes %>
-    <%= form.text_field :notes %>
-  </div>
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+<%=render "form", bookmark: @bookmark%>
 <%= link_to "Cancel", bookmarks_path%>
