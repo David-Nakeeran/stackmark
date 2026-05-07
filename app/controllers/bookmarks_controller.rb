@@ -1,5 +1,5 @@
 class BookmarksController < ApplicationController
-  before_action :set_bookmark, only: [ :show, :edit, :update ]
+  before_action :set_bookmark, only: [ :show, :edit, :update, :destroy ]
 
   def index
     @bookmarks = Current.user.bookmarks
@@ -30,6 +30,11 @@ class BookmarksController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @bookmark.destroy
+    redirect_to bookmarks_path
   end
 
   private
