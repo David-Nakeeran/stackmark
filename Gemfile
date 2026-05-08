@@ -57,6 +57,8 @@ group :development, :test do
   gem "dotenv-rails"
 
   gem "tailwindcss-rails"
+
+  gem "metainspector"
 end
 
 group :development do
