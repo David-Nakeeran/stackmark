@@ -3,7 +3,12 @@ Rails.application.routes.draw do
   get "about", to: "pages#about"
   get "/dashboard", to: "dashboard#show"
   delete "/logout", to: "sessions#destroy"
-  resources :bookmarks
+
+  resources :bookmarks do
+    collection do
+      get :fetch_metadata
+    end
+  end
   resource :signups
   resource :session
   resources :passwords, param: :token

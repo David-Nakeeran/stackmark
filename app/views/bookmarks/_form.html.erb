@@ -1,14 +1,14 @@
-<%= form_with model: bookmark do |form|%>
+<%= form_with model: bookmark, data: {controller: "bookmark-form"} do |form|%>
   <% if form.object.errors.any?%>
     <p><%= form.object.errors.full_messages.first %></p>
   <%end%>
   <div>
     <%= form.label :url %>
-    <%= form.text_field :url %>
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.text_field :url, data: {action: "change->bookmark-form#fetchMetadata", "bookmark-form-target": "url"} %>
+    <%= form.label :title%>
+    <%= form.text_field :title, data: { "bookmark-form-target": "title"} %>
     <%= form.label :description %>
-    <%= form.text_field :description %>
+    <%= form.text_field :description, data: { "bookmark-form-target": "description"} %>
     <%= form.label :notes %>
     <%= form.text_field :notes %>
   </div>
