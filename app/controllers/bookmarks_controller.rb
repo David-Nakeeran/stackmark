@@ -37,6 +37,11 @@ class BookmarksController < ApplicationController
     redirect_to bookmarks_path
   end
 
+  def fetch_metadata
+    metadata = MetadataFetcherService.call(params[:url])
+    render json: metadata
+  end
+
   private
     def set_bookmark
       @bookmark = Current.user.bookmarks.find_by!(id: params[:id])
