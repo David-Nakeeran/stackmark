@@ -6,6 +6,15 @@
 <% if @bookmark.notes.present? %>
   <p>Notes: <%= @bookmark.notes %></p>
 <% end %>
+<% if @bookmark.tags.present?%>
+  <div class="flex flex-wrap gap-2 mt-2">
+    <% @bookmark.tags.each do |tag|%>
+      <p class="px-3 py-1 text-xs font-medium bg-indigo-100 text-indigo-700 rounded-full">
+        <%= tag.name%>
+      </p>
+    <%end%>
+  </div>
+<%end%>
 <div>
   <%= link_to "Edit", edit_bookmark_path(@bookmark) %> |
   <%= button_to "Delete", @bookmark, method: :delete, data: {turbo_confirm: "Are you sure?"}%> |
