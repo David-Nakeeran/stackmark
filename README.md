@@ -41,13 +41,6 @@ This keeps the data structure clean and avoids unnecessary duplication.
 
 ## What I Learned
 
-Building Stackmark helped reinforce and deepen my understanding of several core concepts:
-
-- The importance of normalising user input before saving to the database
-- When NOT to build full CRUD (e.g. tags as supporting data rather than a primary resource)
-- Keeping controller logic simple and focused on flow, while models handle relationships and data structure
-- Thinking more about how data structure impacts UI and user experience
-
 ---
 
 ## Future Improvements
