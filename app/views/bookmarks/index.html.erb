@@ -1,14 +1,35 @@
 <h1>Bookmarks</h1>
 <div>
   <%= link_to "New Bookmark", new_bookmark_path%>
-  <% unless @bookmarks.any? %>
-    <p>You currently don't have any bookmarks</p>
-  <% else %>
+  <% if @bookmarks.any? %>
+    <div>
+      <p>Tags:</p>
+      <%= link_to "All",
+        bookmarks_path,
+        class: params[:tag].blank? ? 
+          "bg-blue-500 text-white px-2 py-1 rounded" : "bg-gray-200 text-gray-800 px-2 py-1 rounded"
+      %>
+      <% @tags.each do |tag|%>
+        <% is_active = params[:tag] == tag.name%>
+        <%= link_to tag.name,
+          bookmarks_path(tag: tag.name),
+          class: is_active ? 
+            "bg-blue-500 text-white px-3 py-1 rounded-full mr-2 inline-block" :
+            "bg-gray-200 text-gray-800 px-3 py-1  rounded-full mr-2 inline-block hover:bg-gray-300"
+        %>
+      <%end%>
+    </div>
     <% @bookmarks.each do |bookmark|%>
       <div>
         <p>Title: <%= bookmark.title%></p>
         <%= link_to "View Details", bookmark_path(bookmark)%>
       </div>
     <%end%>
+  <% else%>
+    <% if params[:tag].present? %>
+      <p>No bookmarks found for "<%= params[:tag] %>"</p>
+    <% else %>
+      <p>You currently don't have any bookmarks</p>
+    <% end %>
   <%end%>
 </div>
