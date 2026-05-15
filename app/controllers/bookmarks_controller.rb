@@ -3,6 +3,13 @@ class BookmarksController < ApplicationController
 
   def index
     @bookmarks = Current.user.bookmarks
+    @tags = Current.user.tags.distinct
+
+    if params[:tag].present?
+      @bookmarks = @bookmarks
+        .joins(:tags)
+        .where(tags: { name: params[:tag] })
+    end
   end
 
   def show
