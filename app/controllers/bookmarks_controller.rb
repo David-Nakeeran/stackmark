@@ -2,7 +2,7 @@ class BookmarksController < ApplicationController
   before_action :set_bookmark, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    @bookmarks = Current.user.bookmarks
+    @bookmarks = Current.user.bookmarks.includes(:tags)
     @tags = Current.user.tags.distinct
 
     if params[:tag].present?
@@ -38,7 +38,14 @@ class BookmarksController < ApplicationController
   end
 
   def update
-    if @bookmark.update(bookmark_params)
+    filtered_params, tag_list = filtered_form_data
+    if @bookmark.update(filtered_params)
+      parsed_tags = parse_tags(tag_list)
+      @bookmark.bookmark_tags.destroy_all
+      parsed_tags.each do |tag_name|
+        tag = Tag.find_or_create_by(name: tag_name)
+        @bookmark.bookmark_tags.create(tag: tag)
+      end
       redirect_to @bookmark
     else
       render :edit, status: :unprocessable_entity
