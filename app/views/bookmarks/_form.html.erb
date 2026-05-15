@@ -12,7 +12,8 @@
     <%= form.label :notes %>
     <%= form.text_field :notes %>
     <%= form.label :tag_list%>
-    <%= form.text_field :tag_list%>
+    <%= form.text_field :tag_list, 
+      value: @bookmark.tags.map {|item| item.name}.join(", ")%>
   </div>
   <div>
     <%= form.submit %>
