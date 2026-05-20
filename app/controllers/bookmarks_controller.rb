@@ -1,4 +1,5 @@
 class BookmarksController < ApplicationController
+  layout "dashboard"
   before_action :set_bookmark, only: [ :show, :edit, :update, :destroy ]
 
   def index
