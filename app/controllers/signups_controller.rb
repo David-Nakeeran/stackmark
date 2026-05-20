@@ -9,7 +9,7 @@ class SignupsController < ApplicationController
     @user = User.new(signups_params)
     if @user.save
       start_new_session_for(@user)
-      redirect_to dashboard_path
+      redirect_to bookmarks_path
     else
       render :show, status: :unprocessable_entity
     end

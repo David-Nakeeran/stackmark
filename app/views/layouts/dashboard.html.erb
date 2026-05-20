@@ -19,9 +19,33 @@
     <%= javascript_importmap_tags %>
   </head>
   <body>
-    <%= render "shared/header" %>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
-    </main>
+    <div
+  class="min-h-screen flex"
+  data-controller="sidebar"
+>
+      <div class="lg:hidden fixed top-0 left-0 right-0 border-b bg-white p-4 flex justify-between items-center">
+        <button data-action="click->sidebar#toggle">
+          ☰
+        </button>
+        <div class="font-bold">
+          Stackmark
+        </div>
+      </div>
+      <aside
+    data-sidebar-target="sidebar"
+    class="hidden lg:block w-64 border-r p-4 bg-white min-h-screen"
+  >
+        <div class="font-bold mb-6">
+          Stackmark
+        </div>
+        <nav class="flex flex-col gap-3">
+          <%= link_to "Bookmarks", bookmarks_path %>
+          <%= link_to "About", about_path %>
+        </nav>
+      </aside>
+      <main class="flex-1 p-6 lg:p-10 mt-16 lg:mt-0">
+        <%= yield %>
+      </main>
+    </div>
   </body>
 </html>
