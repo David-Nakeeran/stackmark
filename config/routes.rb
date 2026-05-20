@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   root "pages#home"
   get "about", to: "pages#about"
-  get "/dashboard", to: "dashboard#show"
   delete "/logout", to: "sessions#destroy"
 
   resources :bookmarks do
